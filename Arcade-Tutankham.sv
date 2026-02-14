@@ -223,6 +223,7 @@ localparam CONF_STR = {
 	"TUTANKHAM;;",
 	"ODE,Aspect Ratio,Original,Full screen,[ARC1],[ARC2];",
 	"OC,Orientation,Vert,Horz;",
+    "OB,Flip Vertical,Off,On;",
 	"OFH,Scandoubler Fx,None,HQ2x,CRT 25%,CRT 50%,CRT 75%;",
 	"OL,Game Speed,Native,60Hz Adjust;",
 	"-;",
@@ -482,7 +483,7 @@ wire ce_pix;
 
 wire rotate_ccw = 0;
 wire no_rotate = status[12] | direct_video;
-wire flip = ~no_rotate;
+wire flip = status[11] | ~no_rotate;
 screen_rotate screen_rotate(.*);
 
 arcade_video #(256,24) arcade_video
